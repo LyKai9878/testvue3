@@ -1,58 +1,55 @@
+<!--
+ * @Description: 
+ * @Author: LyKai
+ * @Date: 2023-04-15 19:35:21
+ * @LastEditors: LyKai
+ * @LastEditTime: 2023-04-28 00:01:01
+-->
+<script setup>
+import { ref } from 'vue';
+import MapSelector from './mapSelector.vue';
+const isShowMap = ref(false);
+const isEdit = ref(true);
+// const isEdit = ref(false);
+const mapInitData = ref(null);
+const openMap = () => {
+  // mapInitData.value = '138.223463,36.686654';
+  mapInitData.value = [
+    '121.930069,30.889105',
+    '121.96169,30.89208',
+    '121.960827,30.914762',
+    '121.931507,30.91377'
+  ];
+  isShowMap.value = true;
+};
+const getPoints = points => {
+};
+</script>
+
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <p>
-      For a guide and recipes on how to configure / customize this project,<br>
-      check out the
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
-    </p>
-    <h3>Installed CLI Plugins</h3>
-    <ul>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel" target="_blank" rel="noopener">babel</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint" target="_blank" rel="noopener">eslint</a></li>
-    </ul>
-    <h3>Essential Links</h3>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank" rel="noopener">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank" rel="noopener">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank" rel="noopener">Twitter</a></li>
-      <li><a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a></li>
-    </ul>
-    <h3>Ecosystem</h3>
-    <ul>
-      <li><a href="https://router.vuejs.org" target="_blank" rel="noopener">vue-router</a></li>
-      <li><a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a></li>
-      <li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank" rel="noopener">vue-devtools</a></li>
-      <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
-    </ul>
+  <div class="helloword">
+    <div class="btn" @click="openMap">查看点</div>
+    <div class="btn" @click="openMap">编辑点</div>
+    <div class="btn" @click="openMap">查看范围</div>
+    <div class="btn" @click="openMap">编辑范围</div>
+
+    <MapSelector
+      v-if="isShowMap"
+      :initData="mapInitData"
+      :isEdit="isEdit"
+      @returnData="getPoints"
+    />
   </div>
 </template>
 
-<script>
-export default {
-  name: 'HelloWorld',
-  props: {
-    msg: String
-  }
-}
-</script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
+.helloword {
+  width: 100%;
+  height: 100%;
 }
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
+.btn {
+  width: 100px;
+  height: 30px;
+  border: 1px solid skyblue;
 }
 </style>
